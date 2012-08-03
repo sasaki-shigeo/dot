@@ -1,0 +1,101 @@
+!*Font:			a14
+!*romanKanaFont:	a14
+!*KanjiFont:		k14
+!*shapeStyle:	       	oval
+*pointerShape:		left_ptr
+*inputMethod: 		kinput2
+
+XTerm*visualBell:	true
+XTerm*deleteIsDEL:	true
+!XTerm*saveLines:	300
+
+KTerm*visualBell:	true
+KTerm*saveLines:	300
+Kterm*Font:		a14
+Kterm*romanKanaFont:	a14
+Kterm*KanjiFont:	k14
+Kterm*Font4:		12x24
+Kterm*romanKanaFont4:	12x24
+Kterm*kanjiFont4:	k24
+vt100*font:		-schumacher-clean-medium-r-*--14-*-*-*-*-*-*-*
+vt100*romanKanaFont:	-schumacher-clean-medium-r-*--14-*-*-*-*-*-*-*
+maru*font:		-schumacher-clean-medium-r-*--14-*-*-*-*-*-*-*
+maru*romanKanaFont:	-schumacher-clean-medium-r-*--14-*-*-*-*-*-*-*
+maru*kanjiFont:		-*-marumoji-*-r-*--14-*-*-*-*-140-*-*
+kinput*font:		a14
+kinput*kanjiFont:	k14
+xdbx*Font:		a14
+xdbx*kanjiFont:		k14
+XClock*width: 		80
+XClock*height:		80
+XClock*update:		1
+XBiff*width:		80
+XBiff*height:		80
+XBiff*update:		60
+XBiff*volume:		33
+!XBiff*fullPixmap:      biff_f
+!XBiff*emptyPixmap:     biff_e
+XLoad*width:		80
+XLoad*height:		80
+XLoad*update:		30
+Xdvi*shrinkFactor:	4
+Emacs*FontSetList:	14
+Emacs*FontSet-14:	-*-fixed-medium-r-*--14-*-*-*-*-*-iso8859-1,\
+			-*-fixed-medium-r-*--14-*-jisx0201.1976-*,\
+			-*-fixed-medium-r-*--14-*-jisx0208.1983-*
+!xemacs*FontSetList:	14
+xemacs*FontSet-14:	-*-fixed-medium-r-*--14-*-iso8859-1,\
+			-*-fixed-medium-r-*--14-*-jisx0201.1976-*,\
+			-*-fixed-medium-r-*--14-*-jisx0208.1983-*
+!        korean-ksc5601:-*-*-medium-r-normal--14-*-*-*-*-*-ksc5601*
+Emacs.Fontset-0:        -*-fixed-medium-r-normal--14-*-*-*-*-*-fontset-14,\
+        ascii:-*-fixed-medium-r-normal-*-14-*-iso8859-1,\
+        japanese-jisx0208:-misc-fixed-medium-r-normal--14-*-*-*-*-*-jisx0208.1983-*
+Emacs.Fontset-1:	-*-fixed-bold-r-normal--14-*-*-*-*-*-fontset-14,\
+        ascii:-*-fixed-bold-r-normal-*-14-*-iso8859-1,\
+        japanese-jisx0208:-ryobi-fixed-bold-r-normal--14-*-*-*-*-*-jisx0208.1983-*
+!Emacs.Fontset-2:        -*-fixed-medium-i-normal--14-*-*-*-*-*-fontset-14,\
+!        ascii:-*-fixed-medium-i-normal-*-14-*-iso8859-1,\
+!        japanese-jisx0208:-ryobi-fixed-medium-i-normal--14-*-*-*-*-*-jisx0208.1983-*
+Emacs*menubar*fontSet: -misc-fixed-medium-r-normal--14-*-*-*-*-*-jisx0208
+epoch*minibuf.geometry:	80x1+5+650
+epoch*minibuf.name:	Epoch
+epoch*minibuf.reverse:	true
+!Tgif*PrintCommand:	lpr -Pflp
+Tgif*InitialFont:	Minchou
+!Tgif*CurrentDirectory:	Figure
+!Tgif*LineStyle:		PLAIN
+Tgif*WhereToPrint:	LaTeXFigure
+!Tgif*KanjiFontReadSkip: on
+
+
+#ifdef COLOR
+
+*cursorColor:		red4
+!*Foreground:		black
+
+Xterm*Background:	ivory
+Kterm*Background:	ivory
+XClock*Foreground:	brown
+XClock*Background:	ivory
+XBiff*Background:	ivory
+xload*Background:	ivory
+xload*Foreground:	grey40
+!emacs*Foreground:	white
+!emacs*Background:	green4
+!emacs*cursorColor:	GreenYellow
+!emacs*pointerColor:	GreenYellow
+!mule*Foreground:	white
+!mule*Background:	green4
+!mule*cursorColor:	GreenYellow
+!mule*pointerColor:	GreenYellow
+
+info*Foreground:	white
+info*Background:	green4
+info*cursorColor:	GreenYellow
+info*pointerColor:	GreenYellow
+prolog*Foreground:	black
+prolog*Background:	lavenderBlush
+prolog*cursorColor:	red4
+prolog*pointerColor:	red4
+#endif

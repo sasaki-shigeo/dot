@@ -1,0 +1,10 @@
+!
+! Xmodmap
+!
+keycode 94 = backslash bar
+keycode 51 = backslash bar
+keycode 49 = grave asciitilde
+keycode 129 = Meta_R
+keycode 131 = Meta_L
+
+add mod1 = Meta_R Meta_L

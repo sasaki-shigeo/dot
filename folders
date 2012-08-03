@@ -1,0 +1,112 @@
+#
+# Folder definition file
+# This file is generated automatically by Wanderlust 1.1.0 (Overjoyed).
+#
+
+Local {
+	+inbox	"受信箱"
+	+old	"古いメイル"
+	+trash	"ゴミ箱"
+	+junky	"ほとんどゴミ"
+	+draft	"下書"
+	+meibo	"同窓会名簿"
+	+meibo-annex "名簿(その他のやり取り)" 
+	+misc	"その他"
+	+majordomo	"ML 入脱会"
+	レポート{
+		+literacy "情報処理入門(平成12年)"
+		+report	"レポート(第1回)"
+		+report2 "レポート(第2回)"
+		+report-calc-1	"レポート(電卓)"
+		+report02 "入門(平成14年度)"
+		+report-java "コンパイラ(平成14年度)"
+	}
+
+	学内連絡{
+		+faculty/full	"学部"
+		+faculty/prog	"課程"
+		+faculty/course	"選修"
+		+faculty/dept	"講座"
+		+faculty/math	"数学・情報"
+		+faculty/lab	"研究室"
+		+net		"ネットワーク委員会"
+		+security	"セキュリティ委員会"
+		+questionary	"セキュリティアンケート"
+		+center/shunin	"センター主任会議"
+		+center/comm	"センター専門委員会"
+	}
+
+	Mail-Lists{
+		学会{
+			+logic
+			+ipsj
+			+jssst
+			+acm
+		}
+		FreeBSD{
+			+FreeBSD/announce
+			+FreeBSD/users-jp
+			+FreeBSD/net-jp
+			+FreeBSD/ports-jp
+			+FreeBSD/java-jp
+			+FreeBSD/stable
+			+FreeBSD/current
+			+FreeBSD/ports
+		}
+		Ruby{
+			+ruby/list
+			+ruby/math
+		}
+		+sdoc		"SmartDoc"
+		+memo		"Security Hole Memo"
+		+postfix-jp
+		+imap4
+		+wl		"Wanderlust"
+		+drinker
+		+ob-kanji	"心青幹事会"
+		+scl
+		+venders
+	}
+
+	+daemon
+	+cron-r/
+	+cron-s/
+	*+cron-s/junsai,+cron-s/inukko,+cron-s/others
+
+	+test	"テスト"
+}
+
+#IMAP(情報科学){
+#	%#mh/inbox@mailer.is.akita-u.ac.jp	"受信箱"
+#	%#news.local@mailer.is.akita-u.ac.jp	"ニュース"
+#}
+
+#IMAP(IPC){
+#	%inbox:sig/login@sextet.ipc.akita-u.ac.jp
+#}
+
+News{
+	Akita-U{
+		-akita-u.ipc.announce
+		-akita-u.ipc.q-a
+		-akita-u.misc
+		-akita-u.talk
+		-akita-u.test
+	}
+	-akita/
+	FJ{
+		-fj.comp/
+		-fj.os/
+	}
+}
+
+#IMAP(小町){
+#	%inbox:@komachi.ed.akita-u.ac.jp	"受信箱"
+#}
+
+#&sig/pop@komachi.ed.akita-u.ac.jp	"POP(小町)"
+#&sig/apop@mailer.ed.akita-u.ac.jp	"APOP(田沢)"
+
+# petname definition (group, folder in access group)
+
+# end of file.

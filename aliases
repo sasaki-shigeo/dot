@@ -1,0 +1,96 @@
+#
+# aliases & shell-variables setting for csh/tcsh 
+#
+set history = 100
+set nobeep notify nonomach
+set cdpath = (.. ~)  
+set fignore = ('.o' '~')
+set mail = /usr/spool/mail/$user
+
+#	alias setting
+alias s		dirs
+alias f 	finger
+alias ls	ls -F
+alias la	ls -a
+alias le 	less -e
+alias ll	\ls -lg
+alias lll	'\ls -lg \!* | less'
+alias pd 	pushd
+alias j 	jobs
+alias z 	suspend
+alias sw	fg -
+alias b	fg
+alias 	exit
+alias emacs	emacs -nw
+alias manroff 	'nroff -man \!* | $PAGER'
+alias g		egrep
+alias path	'echo $path'
+alias addpath	'set path = (. \!* $path[2-])'
+alias lim	limit
+alias unl	unlimit
+alias bt	'echo \$c | adb' 
+alias errcode	'echo $status'
+alias up 	uptime
+alias his 	history 20
+alias las 	last -20
+alias motd 	cat /etc/motd
+alias src 	source
+alias SCCS	source ~/.sccs
+alias RCS	source ~/.rcs
+
+
+if (! $?EMACS) then		 # login shell
+    alias gnus   emacs -f gnus
+    alias rmail  emacs -f rmail
+    alias smail  emacs -f mail
+    alias vm	 emacs -f vm
+    alias bytecompile emacs -batch -f batch-byte-compile
+endif
+
+if ($shell:t == tcsh || $?tcsh) then
+    set prompt_mark='[%t]'
+    set printexitvalue pushsilent chase_symlinks
+    set listmax = 100
+    set watch = (root news)
+    #bindkey list-glob 
+    #bindkey self-insert-command 
+else if ($shell:t == csh) then
+    set prompt_mark='[\!]'
+    set filec
+    alias  clear
+    alias pwd	'echo $cwd'
+else		# unknown shell
+    set prompt_mark=''
+endif
+
+# Who am I ?
+if (! $?USER) then
+    if ($?LOGNAME) then
+	set user = $LOGNAME
+    else
+	set user = `whoami`
+        setenv LOGNAME $user
+    endif
+endif
+
+if (`whoami` == root) then		# when su
+    set root
+    setenv EDITOR vi
+    setenv PAGER more
+    alias rm rm -i
+endif
+
+if ($?root) then
+    set prompt_mark = "${prompt_mark}# "
+else
+    set prompt_mark = "${prompt_mark}% "
+endif
+
+set prompt_seq = ($HOST $USER $USER@$HOST '%c ')
+set prompt_ix = 1
+set prompt = "$prompt_seq[$prompt_ix]$prompt_mark"
+alias prompt '@ prompt_ix = $prompt_ix % $#prompt_seq + 1; set prompt = "$prompt_seq[$prompt_ix]$prompt_mark"'
+# alias precmd prompt
+if ($?news) set prompt = "News$prompt_mark"
+
+stty erase ^H

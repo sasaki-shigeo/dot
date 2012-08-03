@@ -1,0 +1,200 @@
+#
+#    .twmrc
+#
+#	sccs id = @(#).twmrc	2.7
+#	last modified 91/09/13 17:26:42
+#
+
+MenuFont	"-adobe-times-medium-r-*--18-*-*-*-*-*-*-*"
+ResizeFont	"-adobe-times-bold-i-*--24-*-*-*-*-*-*-*"
+TitleFont	"-adobe-times-bold-r-*--14-*-*-*-*-*-*-*"
+IconFont	"-adobe-times-bold-r-*--14-*-*-*-*-*-*-*"
+
+BorderWidth	3
+
+#VirtualDesktop "2000x1500"
+
+Color {
+    BorderColor "slategrey"
+    DefaultBackground "ivory"
+    DefaultForeground "black"
+    TitleBackground "honeydew"
+    TitleForeground "black"
+    MenuBackground "grey90"
+    MenuForeground "blue"
+    MenuTitleBackground "blue"
+    MenuTitleForeground "grey90"
+    IconBackground "ivory"
+    IconForeground "black"
+    IconBorderColor "grey"
+}
+
+# IconifyByUnmapping
+IconRegion "570x90+3+2" North East 10 10
+IconRegion "400x90-5+2" North East 10 10
+#IconRegion "80x768+3-2" South West 10 10
+#IconRegion "1000x90+3+2" North West 10 10
+IconDirectory	"~/.bitmaps"
+UnknownIcon	"xlogo64"
+Icons
+{
+  "xterm"	"busstop"
+  "kterm"	"busstop"
+  "emacs"	"crayon"
+  "mule"	"crayon"
+  "xbiff"	"flagdown"
+  "rlogin"	"sassa64"
+  "News"	"news"
+}
+
+NoTitle
+{
+  "xclock" "oclock" "xload" "xbiff" "xeyes" "topBox" "CD Player" "xlogout"
+  "xdaliclock"
+}
+
+IconManagerDontShow
+{
+  "xclock" "oclock" "xload" "xbiff" "xeyes" "topBox" "CD Player" "xlogout"
+  "xdaliclock"
+}
+
+NoRaiseOnMove
+NoRaiseOnResize
+# WarpCursor
+# Zoom
+
+#
+# Mouse Operations
+#
+
+MoveDelta 10
+Function "move-or-lower"	{ f.move f.deltastop f.lower }
+Function "move-or-raise"	{ f.move f.deltastop f.raise }
+Function "move-or-raiselower"	{ f.move f.deltastop f.raiselower }
+Function "move-or-iconify"	{ f.move f.deltastop f.iconify }
+
+LeftTitleButton "menu16" = f.menu "Window Menu"
+
+Button1	=	: root	: f.menu "Primary Menu"
+Button2	=	: root	: f.menu "New Windows"
+#Button3	=	: root	: f.menu "Primary Menu"
+
+Button1	= m | c	: all   : f.menu "Primary Menu"
+Button2	= m | c : all   : f.menu "New Windows"
+#Button3	= m | c : all   : f.menu "Primary Menu"
+# if meta-key pushing, same as root menu
+
+# Button1 = 	: window: f.function "move-or-raise"
+# Button2 = 	: window: f.raiselower
+Button3 = 	: window: f.function "move-or-raiselower"
+
+Button1	=	: title	: f.function "move-or-raise"
+Button2	=	: title	: f.move
+Button3	=	: title	: f.function "move-or-raiselower"
+
+#Button1	= m	: window: f.menu "Window Menu"
+#Button2	= m	: window: f.function "move-or-raise"
+#Button3	= m	: window: f.raiselower
+
+Button1	=	: icon 	: f.iconify
+Button2	=	: icon	: f.function "move-or-iconify"
+Button3	=	: icon	: f.raiselower
+
+Button1 =	: frame : f.resize
+Button2 =	: frame : f.move
+Button3 =	: frame : f.function "move-or-raiselower"
+
+#
+# Menus
+#
+menu "Primary Menu"
+{
+"Primary Menu"   f.title
+"Manipulate"	f.menu "Window Menu"
+"Create"        f.menu "New Windows"
+"Select"	f.menu "TwmWindows"
+"Tools"		f.menu "Window tools"
+"Back Ground"	f.menu "Back Ground"
+"Manager Op"	f.title
+"Unfocus"       f.unfocus
+"Refresh"	f.refresh
+"Restart"	f.restart
+""		f.nop
+"Quit"		f.quit
+}
+
+menu "Window Menu"
+{
+"Window Menu"    f.title
+"Iconify"       f.iconify
+"Refresh"	f.winrefresh
+"Focus"		f.focus
+"Identify"	f.identify
+"Resize"        f.resize
+"Move"          f.move
+"Raise"		f.raise
+"Lower"		f.lower
+"Zoom"		f.title
+"Zoom"		f.zoom
+"- Horizonal"	f.horizoom
+"+ Full"	f.fullzoom
+"v Bottom"	f.bottomzoom
+"^ Top"		f.topzoom
+"> Right"	f.rightzoom
+"< Left"	f.leftzoom
+"Destroy"	f.title
+"Delete"	f.delete
+"Kill"		f.destroy
+}
+
+menu "New Windows" 
+{
+"New Window"	f.title
+"Kterm"		!"kterm &"
+"Mule"		!"mule &"
+"Netscape"	!"netscape &"
+"Biff"		!"xbiff &"
+"Xclock"	!"xclock -geometry =80x80 &"
+"Xload"		!"xload &"
+"Xeyes"		!"xeyes &"
+"Xv"		!"xv &"
+"Xterm"		!"xterm &"
+#"Login Quartet"	!"rcmd quartet kterm -ls -n 4tet -T Quartet"
+#"Login Octet"	!"rcmd octet kterm -ls -n 8tet -T Octet"
+}
+
+menu "Window tools"
+{
+"Window tools"		f.title
+"Netscape"		!"jnetscape &"
+"CD player"		!"/usr/demo/CDROM/x_cdplayer -geometry -5+5 &"
+"X-archie"		!"rcmd iris -l sasaki xarchie"
+"X-dbx"			!"xdbx &"
+"X-man"			!"xman &"
+"X-browser"		!"xbrowser &"
+"X-biff"		!"xbiff &"
+"X-clock"		!"xclock -geometry =80x80 &"
+"O-clock"		!"oclock -geometry =80x80 &"
+"X-calendar"		!"xcalendar &"
+"X-calc"		!"xcalc &"
+"X-load"		!"xload &"
+"X-eyes"		!"xeyes &"
+"X-colors"		!"xcolors &"
+"X-fontsel"		!"xfontsel &"
+""			f.nop
+"Xv"			!"xv &"
+}
+
+menu "Back Ground" 
+{
+"Back Ground Color"	f.title
+"Today's Moon"		!"xphoon &"
+"Today's Moon(Big)"	!"xbigphoon &"
+"Default"		!"xsetroot -def &"
+"Gray1"			!"xsetroot -gray &"
+"Gray2"			!"xsetroot -mod 2 2 &"	
+"Tile"			!"xsetroot -mod 4 4 &"
+"Tacchan"		!"xsetroot -bitmap /usr/include/X11/bitmaps/tacchan &"
+"Black"			!"xsetroot -mod 1 1 &"
+}

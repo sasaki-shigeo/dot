@@ -1,0 +1,77 @@
+;;; -*- emacs-lisp -*-
+;;;
+;;;
+
+(setq vm-primary-inbox "~/Mail/INBOX")
+;; (setq vm-highlighted-header-regexp "^From")
+(setq vm-folder-directory "~/Mail/")
+(setq vm-preview-lines nil)
+(setq vm-honor-page-delimiters t)
+(setq vm-included-text-prefix "> ")
+(setq vm-strip-reply-headers t)
+(setq vm-auto-folder-case-fold-search t)
+(setq vm-delete-after-saving t
+      vm-delete-after-archiving t)
+(setq vm-move-after-deleting 0)
+(setq vm-circular-folders nil)
+(setq vm-jump-to-new-messages nil)
+(setq vm-jump-to-unread-messages nil)
+(setq vm-reply-subject-prefix "Re: ")
+(setq vm-forwarding-subject-format "Forward: %s")
+(setq vm-included-text-attribution-format "%f (Message-ID: %i) wrote:
+")
+;; (setq vm-mail-header-from "sig@ipc.akita-u.ac.jp (SASAKI Shigeo)")
+(setq vm-highlighted-header-regexp nil)
+(setq vm-reply-ignored-addresses
+      '("^sig$"
+	"^sig@ipc.akita-u.ac.jp"
+	"^sig@lambda.is.akita-u.ac.jp"))
+(setq vm-spool-files '("/var/mail/sig"
+		       ;; "junsai.is.akita-u.ac.jp:110:pass:sig:*"
+		       ))
+		
+      
+(setq vm-auto-folder-alist
+      '(("To"
+         ("score" . "SCORE")
+         ("sonoteno" . "sonoteno")
+         ("okadasemi" . "sonoteno")
+         ("knight" . "Fantasy")
+         ("taniyama-hiroko" . "Tani")
+         ("ob-kanji@coins" . "OB")
+         ("ob@coins" . "OB")
+	 ("unix-text@wallaby.cis.ibaraki.ac.jp" . "UNIXTEXT")
+	 ("net-staff@ed.akita-u.ac.jp" . "NetStaff")
+	 ("net-comm@ed.akita-u.ac.jp" . "NetComm"))
+        ("From"
+         ("root\\|[pP]ostmaster" . "Cron")
+	 ("uucp" . "Cron")
+         ("knight" . "Fantasy")
+         ("ob@coins" . "OB"))
+        ("Cc" ("unix-text" . "UNIXTEXT")
+         ("knight" . "Fantasy")
+         ("sonoteno@sfc.keio.ac.jp" . "sonoteno")
+         ("ob@coins" . "OB"))
+	("Sender"
+	 ("@freebsd.org" . "FreeBSD"))))
+
+(setq vm-minimum-auto-folder-alist
+      '(("To"
+         ("knight" . "Fantasy")
+         ("taniyama-hiroko" . "Tani"))
+        ("From"
+         ("knight" . "Fantasy"))
+        ("Cc"
+         ("knight" . "Fantasy"))))
+
+(defun vm-minimum-auto-archive-messages ()
+  (interactive)
+  (let ((vm-auto-folder-alist vm-minimum-auto-folder-alist))
+    (vm-auto-archive-messages)))
+
+(setq vm-mode-hooks
+      '(lambda ()
+        (define-key vm-mode-map "j" 'vm-next-message)
+        (define-key vm-mode-map "k" 'vm-previous-message)
+        (define-key vm-mode-map "\C-k" 'vm-kill-subject)))
+

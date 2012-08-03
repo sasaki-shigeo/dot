@@ -1,0 +1,60 @@
+#
+#	variables setting for csh/tcsh
+#
+
+umask 022
+limit coredumpsize	0	>& /dev/null
+
+
+setenv PAGER		less
+setenv EDITOR		"emacs -nw"
+setenv NNTPSERVER	158.215.2.16
+setenv SAVEDIR		$HOME/News
+setenv AUTHORCOPY	$HOME/News/author_copy
+# setenv PRINTER		lsl
+setenv TEXINPUTS	.:$HOME/tex/inputs:
+#setenv XDVIFONTS	/usr/TeX/fonts/PK:/usr/TeX/fonts/PKams300
+# setenv LANG		japanese
+setenv EXINIT 'set autoindent autowrite showmatch shiftwidth=4 \
+		map ; :'
+
+# If there exists any more convenient shell, use it.
+if ($?tcsh) then
+    foreach sh (/bin/zsh /usr/local/bin/zsh)
+	if (-e $sh) then
+	    setenv SHELL $sh
+	    break
+	endif
+    end
+else
+    foreach sh (/bin/zsh /usr/local/bin/zsh \
+		/bin/tcsh /usr/local/bin/tcsh \
+		/bin/bash /usr/local/bin/bash \
+		/opt/gnu/bin/bash /usr/local/bin/GNU/bash)
+	if (-e $sh) then
+	    setenv SHELL $sh
+	    break
+	endif
+    end
+endif
+
+if (! $?HOST && -x /usr/ucb/hostname) setenv HOST `/usr/ucb/hostname`
+if (! $?HOSTTYPE) then
+    setenv HOSTTYPE unkown
+    foreach i (sun3 sun4 sparc luna news next hp-pa)
+	if (-e /bin/$i && { /bin/$i }) then
+	    setenv HOSTTYPE $i
+	    break
+	endif
+    end
+endif
+if ($HOSTTYPE == sparc) setenv HOSTTYPE sun4
+if ($HOSTTYPE =~ solaris*) setenv HOSTTYPE sun4
+if ($HOSTTYPE =~ hp9000*) setenv HOSTTYPE hp-pa
+
+set path = (~/bin ~/bin/{common,hosts,$HOSTTYPE} \
+		/usr/local/bin /usr/local/bin/X11 $hostbin1 \
+		/usr/etc /usr/sbin /usr/hosts /usr/ucb /usr/bin /bin \
+		$hostbin2)
+
+unset hostbin1 hostbin2
