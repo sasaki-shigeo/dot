@@ -14,10 +14,8 @@ setopt listtypes pushdsilent
 setopt histignoredups #histignorespace histverify
 setopt notify
 setopt printexitvalue
-# setopt sunkeyboardhack
-# setopt nobanghist
 
-stty -istrip erase 
+#stty -istrip erase 
 bindkey -me	# enable meta-key
 bindkey '\M-b'  vi-backward-word
 bindkey '\M-e'  vi-forward-word-end
@@ -38,30 +36,17 @@ limitargs=(cputime filesize datasize stacksize coredumpsize
 makeargs=(all clean install default)
 printers=(oki part news02 dewa)
 hosts=( localhost 127.0.0.1
-	158.215.64.1 158.215.80.1 158.215.93.1
-	158.215.44.100 158.215.64.60
 	akita-u.ac.jp 
-	tazawa.ed.akita-u.ac.jp komachi.ed.akita-u.ac.jp
 	quartet.ipc.akita-u.ac.jp octet.ipc.akita-u.ac.jp
-	tegata.ipc.akita-u.ac.jp timpani.ipc.akita-u.ac.jp
-	lambda.is.akita-u.ac.jp squid.is.akita-u.ac.jp
-	namahage.is.akita-u.ac.jp kurikoma.is.akita-u.ac.jp
-	cube.ed.akita-u.ac.jp
-	snws-e4.akita-u.ac.jp dhcp80.ed.akita-u.ac.jp
-	junsai.is.akita-u.ac.jp hatahata.is.akita-u.ac.jp
+	lambda.is.akita-u.ac.jp 
+	junsai.is.akita-u.ac.jp
 	is.tsukuba.ac.jp score.is.tsukuba.ac.jp
-	gama.is.tsukuba.ac.jp maple.is.tsukuba.ac.jp
-	symphony.score.is.tsukuba.ac.jp concerto.score.is.tsukuba.ac.jp
-	octette.score.is.tsukuba.ac.jp viola1.score.is.tsukuba.ac.jp
 	ftp.netlab.is.tsukuba.ac.jp ntp.netlab.is.tsukuba.ac.jp
-	isl.educ.fukushima-u.ac.jp	# shinoda lab.
-	casper.yz.yamagata-u.ac.jp	# afterstep mirror
 	ftp.akita-u.ac.jp ftp.is.akita-u.ac.jp 
 	ftp.jp.freebsd.org
 	netbsd.tohoku.ac.jp
 	ftp.u-aizu.ac.jp ftp.tut.ac.jp ftp.kuis.kyoto-u.ac.jp
-	ftp.nacsis.ac.jp ftp.riken.go.jp
-	sh.wide.ad.jp uunet.uu.net etlport.etl.go.jp)
+	ftp.nacsis.ac.jp ftp.riken.go.jp )
 
 urls=
 
@@ -115,8 +100,6 @@ if [ X$EMACS = X ] ; then
     alias smail='emacs -f mail'
     alias bytecompile='emacs -batch -f batch-byte-compile'
 fi
-
-alias ncftp2='NCFTPDIR=$HOME/.ncftp2 ncftp2'
 
 lll ()	{ ls -lgw $@ | eval ${PAGER:-more} }
 manroff () { nroff -man $* | eval ${PAGER:-more} }

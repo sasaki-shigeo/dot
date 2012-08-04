@@ -1,9 +1,8 @@
 #! /bin/sh
+#
+# a server start up script for Xorg
+#
+
 case `hostname -s` in
-    #lambda|tonburi) exec X :0 -bpp 15 $@ ;;
-    #cons|gibasa) exec X :0 -bpp 24 $@ ;;
-    #inukko) /usr/X11R6/bin/Xwrapper :0 -bpp 15 $@ ;;
-    #inukko) exec Xwrapper :0 -bpp 15 $@ ;;
-    purple) exec /usr/X11R6/bin/Xwrapper-4 :0 $@ ;;
     *) exec /usr/X11R6/bin/Xwrapper-4 :0 $@ ;;
 esac
