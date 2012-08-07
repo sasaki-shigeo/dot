@@ -18,6 +18,6 @@ else if (! $?prompt && ! $?DISPLAY && ! $?EDITOR) then
     umask 022			# rsh
     set path = (~/bin ~/bin/common /usr/local/bin \
 		/usr/local/bin/X11 /usr/bin/X11 \
-		/usr/sbin # SystemV  \
+		/usr/sbin \
 		/usr/ucb /usr/bin /bin /usr/etc)
 endif
