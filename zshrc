@@ -3,7 +3,6 @@
 #
 
 HISTSIZE=1000
-#cdpath=(.. /usr/local /usr /)
 fignore=('.o' '.ql' '~')
 PROMPT='%n[%t]%# '
 RPROMPT='%m:%~'
