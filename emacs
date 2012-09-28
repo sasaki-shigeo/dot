@@ -556,7 +556,7 @@
 ;;; HHK and Apple Keyboard have Erase keys printed as DELETE.
 ;;; If you use such a keyboard, let normal-erase-is-backspace be zero.
 ;;;
-(when (= emacs-major-version 21)
+(when (>= emacs-major-version 21)
   (normal-erase-is-backspace-mode 0))
 
 ;;;
@@ -567,51 +567,6 @@
 	 (slot  (assoc key (car (cdr (car (cdr config)))))))
     (setcdr slot value)
     (set-frame-configuration config)))
-
-(if (= emacs-major-version 19)
-    (progn
-      (fmakunbound 'c-mode)
-      (makunbound  'c-mode-map)
-      (fmakunbound 'c++-mode)
-      (makunbound  'c++-mode-map)
-      (makunbound  'c-style-alist)
-
-      (autoload 'c-mode "cc-mode" nil t)
-      (autoload 'c++-mode "cc-mode" nil t)
-      (autoload 'java-mode "cc-mode" nil t)
-
-      ;; autoloading
-      (autoload 'pas-mode "pas-mode" nil t)
-      (autoload 'html-helper-mode "html" nil t)
-
-      (scroll-bar-mode -1)
-
-      (if (featurep 'mule)
-	  (let ((its:*defrule-verbose* nil))
-	    (dolist (pair my-roma-kana-rule-alist)
-	      (its-defrule (car pair) (cadr pair) nil nil "roma-kana"))
-	    (define-key global-map  "\M- "  'toggle-egg-mode)))
-
-
-      ;;(its-defrule "!"   "! "    nil nil "roma-kana")
-      ;;(its-defrule ","   ", "    nil nil "roma-kana")
-      ;;(its-defrule "."   ". "    nil nil "roma-kana")
-      ;;(its-defrule "?"   "? "    nil nil "roma-kana")
-
-      ;; EWnn (English Wnn)
-      (load "ewnn" t)
-      (setq ewnn-server-list '("junsai" "lambda"))))
-
-;;;
-;;; Eshell for emacs 20
-;;;
-
-(when (= emacs-major-version 20)
-  ;; You can run eshell by M-x eshell
-  (require 'eshell-auto)
-  ;; Use pcomplete with shell-mode 
-  (require 'pcmpl-auto))
-(add-hook 'shell-mode-hook 'pcomplete-shell-setup)
 
 ;;;
 ;;; End of Personal Costomization.
