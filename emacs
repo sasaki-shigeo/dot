@@ -1,8 +1,44 @@
+;; (create-fontset-from-fontset-spec 
+;;  (concat 
+;;   "-*-fixed-medium-r-normal-*-24-*-*-*-*-*-fontset-osaka14," 
+;;   "japanese-jisx0208:-apple-osaka\201|\223\231\225\235-medium-r-normal--14-140-75-75-m-140-jisx0208.1983-sjis," 
+;;   "katakana-jisx0201:-apple-osaka\201|\223\231\225\235-medium-r-normal--14-140-75-75-m-140-jisx0208.1983-sjis," 
+;;   "ascii:-apple-monaco-medium-r-normal-*-14-*-*-*-*-*-mac-roman")) 
+
+;; (cond ((eq window-system 'mac)
+;;        (create-fontset-from-fontset-spec
+;; 	(concat 
+;; 	 "-*-fixed-medium-r-normal-*-14-*-*-*-*-*-fontset-hiracou14" 
+;; 	 ",japanese-jisx0208:-apple-¥Ò¥é¥®¥Î´Ý¥´ pro w4-medium-r-normal--14-140-75-75-m-140-jisx0208.1983-sjis" 
+;; 	 ",katakana-jisx0201:-apple-¥Ò¥é¥®¥Î´Ý¥´ pro w4-medium-r-normal--14-140-75-75-m-140-jisx0201.1976-0"
+;; 	 ",korean-ksc5601:-apple-applegothic-medium-r-normal--14-140-75-75-m-140-ksc5601.1989-0" 
+;; 	 ",ascii:-apple-courier-*-*-normal--14-*-75-75-m-*-mac-roman"
+;; 	 ",latin-iso8859-1:-apple-courier-*-*-normal--14-*-75-75-m-*-mac-roman"
+;; 	 ))))
+
+;; (set-default-font "fontset-osaka14") 
+;; (setq default-frame-alist (append '((font . "fontset-osaka14")))) 
+;; (set-default-font "fontset-hiracou14")
+;; (setq default-frame-alist (append '((font . "fontset-hiracou14"))))
+
+;; (setq navi2ch-net-http-proxy "wproxy.is.akita-u.ac.jp:8080")
+;; (setq navi2ch-article-auto-expange t)
+;; (setq navi2ch-list-bbstable-url "http://menu.2ch.net/bbstable.html")
+
+(set-face-attribute 'default nil :family "courier" :height 140)
+(set-fontset-font "fontset-default"
+                  'japanese-jisx0208
+                  '("¥Ò¥é¥®¥Î´Ý¥´ pro w4*" . "jisx0208.*"))
+(set-fontset-font "fontset-default"
+                  'katakana-jisx0201
+                  '("¥Ò¥é¥®¥Î´Ý¥´ pro w4*" . "jisx0201.*"))
+
 ;;;;
 ;;;; Emacs start up program
 ;;;;
-;;;; This file is designed for emacs19/emacs20/xemacs.
-;;;; Emacs18 or earlier are not supported
+;;;; This file is designed for emacs19, emacs20, xemacs and emacs21.
+;;;; Emacs22 will be supported soon (customizing in progress).
+;;;; Emacs18 or earlier are not supported.
 ;;;;
 
 (if (= emacs-major-version 19)
@@ -69,6 +105,15 @@
 ;; (define-key minibuffer-local-map "\b" 'backward-delete-char)
 ;; (setq search-delete-char ?\b)
 
+(when tty-erase-char
+  (define-key global-map
+              (string tty-erase-char)
+              'backward-delete-char-untabify)
+  (define-key minibuffer-local-map
+              (string tty-erase-char)
+	      'backward-delete-char)
+  (setq search-delete-char tty-erase-char))
+
 ;;; text-mode
 (add-hook 'text-mode-hook
 	  '(lambda ()
@@ -81,8 +126,9 @@
 (setq tex-run-command "ptex")
 (setq latex-run-command "platex")
 (setq tex-bibtex-command "jbibtex")
-(setq tex-dvi-view-command "xdvi")
-(setq tex-dvi-print-command "dvips -f * | lpr -Plpress")
+(setq tex-dvi-view-command "xdvi -s 8")
+;;(setq tex-dvi-print-command "dvips -f * | lpr -Pddc")
+(setq tex-dvi-print-command "dvips -f * |psfilter -d| lpr -Plp")
 (setq tex-default-mode 'latex-mode)
 (setq latex-block-names '("Def" "example" "question" "exercise" "alltt"))
 (defun tex-insert-item ()
@@ -160,15 +206,31 @@
 
 (add-hook 'java-mode-hook
 	  '(lambda ()
+	     (c-subword-mode t)
 	     (make-local-variable 'compile-command)
              (setq compile-command
-                   (concat "javac "
+                   (concat "javac -J-Duser.language=en "
                            (file-name-nondirectory  buffer-file-name)))))
 
 ;(setq c-argdecl-indent 5)
 ;(setq c-indent-level 4)
 ;(setq c-continued-statement-offset 4)
 ;(setq c-label-offset -3)
+
+;;; Scala mode
+(require 'scala-mode-auto "scala-mode" t)
+(defun run-scala ()
+  (interactive)
+  (scala-run-scala nil)
+  (pop-to-buffer "*inferior-scala*"))
+(add-hook 'scala-mode-hook
+	  '(lambda ()
+	     (c-subword-mode t)
+	     (make-local-variable 'compile-command)
+	     (setq compile-command
+		   (concat "scalac "
+			   (file-name-nondirectory buffer-file-name)))
+	     (define-key scala-mode-map "\r" 'newline-and-indent)))
 
 ;;; pascal mode
 (setq pas-indent 4)
@@ -234,6 +296,7 @@
 (autoload 'haskell-mode "haskell-mode" nil t)
 (autoload 'run-haskell "inf-haskell" nil t)
 (setq haskell-program-name "hugs \"+.\" -98")
+(setq haskell-font-lock-symbols 'japanese-jisx0208)
 
 ;; E-Debug
 (autoload 'edebug-defun 		"edebug" nil t)
@@ -388,7 +451,7 @@
 
 (require 'w3m-load nil t)
 (require 'mime-w3m nil t)
-(setq browse-url-browser-function 'w3m-browse-url)
+;; (setq browse-url-browser-function 'w3m-browse-url)
 
 
 ;;;
@@ -504,9 +567,8 @@
 ;;(when (featurep 'faces)
 ;;  (set-face-foreground))
 
-;;; Emacs 20, 21
-(when (and (or (= emacs-major-version 20)
-	       (= emacs-major-version 21))
+;;; Emacs 20 or lator
+(when (and (>= emacs-major-version 20)
 	   (not (featurep 'xemacs)))
   (set-language-environment "Japanese")
   (set-terminal-coding-system 'iso-2022-jp)
@@ -519,17 +581,17 @@
 	 ;;(custom-set-variables '(its-hira-enable-double-n nil))
 	 (setq its-hira-enable-double-n nil)
 	 (setq its-hira-enable-zenkaku-alphabet nil)
-	 (setq its-hira-comma "$B!$(B")
+	 (setq its-hira-comma "¡¤")
 	 (define-its-state-machine-append its-hira-map
-	   (its-defrule "Z,"  "$B!"(B" nil t)
-	   (its-defrule "wi"  "$B$&$#(B" nil t)
-	   (its-defrule "we"  "$B$&$'(B" nil t)
-	   (its-defrule "thi" "$B$F$#(B" nil t)
-	   (its-defrule "twu" "$B$H$%(B" nil t)
-	   (its-defrule "thu" "$B$F$e(B" nil t)
-	   (its-defrule "dhi" "$B$G$#(B" nil t)
-	   (its-defrule "dwu" "$B$I$%(B" nil t)
-	   (its-defrule "dhu" "$B$G$e(B" nil t)))
+	   (its-defrule "Z,"  "¡¢" nil t)
+	   (its-defrule "wi"  "¤¦¤£" nil t)
+	   (its-defrule "we"  "¤¦¤§" nil t)
+	   (its-defrule "thi" "¤Æ¤£" nil t)
+	   (its-defrule "twu" "¤È¤¥" nil t)
+	   (its-defrule "thu" "¤Æ¤å" nil t)
+	   (its-defrule "dhi" "¤Ç¤£" nil t)
+	   (its-defrule "dwu" "¤É¤¥" nil t)
+	   (its-defrule "dhu" "¤Ç¤å" nil t)))
 	((featurep 'egg)
 	 (let ((its:*defrule-verbose* nil))
 	   (egg)				; EGG3
@@ -543,15 +605,13 @@
   ;; (define-key global-map " " 'self-insert-command)
 
   (scroll-bar-mode -1)
-  (autoload 'html-helper-mode "html" nil t)
+  (autoload 'html-helper-mode "html" nil t))
 
-  (setq default-frame-alist
-	(nconc '((font . "fontset-14"))
-	       default-frame-alist)))
+;;(when (featurep 'tool-bar)
+;;  (tool-bar-mode nil))
 
-(when (featurep 'tool-bar)
-  (tool-bar-mode nil))
-
+;;;
+;;; Emacs 21 or lator
 ;;;
 ;;; HHK and Apple Keyboard have Erase keys printed as DELETE.
 ;;; If you use such a keyboard, let normal-erase-is-backspace be zero.
@@ -560,13 +620,33 @@
   (normal-erase-is-backspace-mode 0))
 
 ;;;
-;;; Emacs 19
+;;; Emacs 22 or lator
 ;;;
-(defun set-frame-attribute (key value)
-  (let* ((config (current-frame-configuration))
-	 (slot  (assoc key (car (cdr (car (cdr config)))))))
-    (setcdr slot value)
-    (set-frame-configuration config)))
+;;; file name completion by SPACE BAR same as early versions.
+;;;
+(when (boundp 'minibuffer-local-filename-completion-map)
+  (define-key minibuffer-local-filename-completion-map
+    " " 'minibuffer-complete-word))
+(when (boundp 'minibuffer-local-must-match-filename-map)
+  (define-key minibuffer-local-must-match-filename-map
+    " " 'minibuffer-complete-word))
+
+;;;
+;;; check-in/out by C-x C-q
+;;;
+(define-key ctl-x-map "\C-q" 'vc-toggle-read-only)
+
+
+;;;
+;;; Eshell for emacs 20
+;;;
+
+(when (= emacs-major-version 20)
+  ;; You can run eshell by M-x eshell
+  (require 'eshell-auto)
+  ;; Use pcomplete with shell-mode 
+  (require 'pcmpl-auto))
+(add-hook 'shell-mode-hook 'pcomplete-shell-setup)
 
 ;;;
 ;;; End of Personal Costomization.
