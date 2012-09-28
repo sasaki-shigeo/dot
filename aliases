@@ -1,6 +1,8 @@
 #
 # aliases & shell-variables setting for csh/tcsh 
 #
+# Note: this file will be called by ~/.cshrc
+#
 set history = 100
 set nobeep notify nonomach
 set cdpath = (.. ~)  
@@ -8,7 +10,6 @@ set fignore = ('.o' '~')
 set mail = /usr/spool/mail/$user
 
 #	alias setting
-alias s		dirs
 alias f 	finger
 alias ls	ls -F
 alias la	ls -a
@@ -28,15 +29,12 @@ alias path	'echo $path'
 alias addpath	'set path = (. \!* $path[2-])'
 alias lim	limit
 alias unl	unlimit
-alias bt	'echo \$c | adb' 
 alias errcode	'echo $status'
 alias up 	uptime
 alias his 	history 20
 alias las 	last -20
 alias motd 	cat /etc/motd
 alias src 	source
-alias SCCS	source ~/.sccs
-alias RCS	source ~/.rcs
 
 
 if (! $?EMACS) then		 # login shell
@@ -52,8 +50,6 @@ if ($shell:t == tcsh || $?tcsh) then
     set printexitvalue pushsilent chase_symlinks
     set listmax = 100
     set watch = (root news)
-    #bindkey list-glob 
-    #bindkey self-insert-command 
 else if ($shell:t == csh) then
     set prompt_mark='[\!]'
     set filec
@@ -92,5 +88,3 @@ set prompt = "$prompt_seq[$prompt_ix]$prompt_mark"
 alias prompt '@ prompt_ix = $prompt_ix % $#prompt_seq + 1; set prompt = "$prompt_seq[$prompt_ix]$prompt_mark"'
 # alias precmd prompt
 if ($?news) set prompt = "News$prompt_mark"
-
-stty erase ^H
