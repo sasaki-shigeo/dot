@@ -11,18 +11,6 @@ fi
 #xset s 600 10
 #xset fp+ tcp/octet.ipc.akita-u.ac.jp:7000
 
-#xmodmap - << XMODMAP
-#	remove Lock = Caps_Lock
-#	remove Control = Control_L
-#	keysym Control_L = Caps_Lock
-#	keysym Caps_Lock = Control_L
-#	keysym Alt_L = Meta_L Alt_L
-#	keysym Alt_R = Meta_R Alt_R
-#	add Lock = Caps_Lock
-#	add Control = Control_L
-#	keycode 94 = backslash bar
-#XMODMAP
-
 xmodmap .xmodmaprc
 
 #if (xrdb -symbol | egrep COLOR) ; then
@@ -30,10 +18,3 @@ xmodmap .xmodmaprc
 #    shift `expr $$ % $#`
 #    xsetroot -bitmap $HOME/.bitmaps/tacchan -bg $1
 #fi
-
-#sleep 1
-#xclock -geometry 80x80-2+2 &
-#sleep 1
-#xload -geometry 80x80-2+88 &
-#sleep 1
-#xscreensaver &
