@@ -28,7 +28,6 @@ fi
 
 
 # site local
-#export CLASSPATH=.:/usr/local/share/java/classes.zip:/usr/local/share/java/swat.zip:/usr/local/share/kaffe/biss.zip
 export TEXINPUTS=.:$HOME/tex/inputs:
 #export XDVIFONTS=/usr/TeX/fonts/PK:/usr/TeX/fonts/PKams300
 export NNTPSERVER=news
