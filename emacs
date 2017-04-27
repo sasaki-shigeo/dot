@@ -9,8 +9,8 @@
 ;;        (create-fontset-from-fontset-spec
 ;; 	(concat 
 ;; 	 "-*-fixed-medium-r-normal-*-14-*-*-*-*-*-fontset-hiracou14" 
-;; 	 ",japanese-jisx0208:-apple-•“•È•Æ•Œ¥›•¥ pro w4-medium-r-normal--14-140-75-75-m-140-jisx0208.1983-sjis" 
-;; 	 ",katakana-jisx0201:-apple-•“•È•Æ•Œ¥›•¥ pro w4-medium-r-normal--14-140-75-75-m-140-jisx0201.1976-0"
+;; 	 ",japanese-jisx0208:-apple-„Éí„É©„ÇÆ„Éé‰∏∏„Ç¥ pro w4-medium-r-normal--14-140-75-75-m-140-jisx0208.1983-sjis" 
+;; 	 ",katakana-jisx0201:-apple-„Éí„É©„ÇÆ„Éé‰∏∏„Ç¥ pro w4-medium-r-normal--14-140-75-75-m-140-jisx0201.1976-0"
 ;; 	 ",korean-ksc5601:-apple-applegothic-medium-r-normal--14-140-75-75-m-140-ksc5601.1989-0" 
 ;; 	 ",ascii:-apple-courier-*-*-normal--14-*-75-75-m-*-mac-roman"
 ;; 	 ",latin-iso8859-1:-apple-courier-*-*-normal--14-*-75-75-m-*-mac-roman"
@@ -28,10 +28,10 @@
 (set-face-attribute 'default nil :family "courier" :height 140)
 (set-fontset-font "fontset-default"
                   'japanese-jisx0208
-                  '("•“•È•Æ•Œ¥›•¥ pro w4*" . "jisx0208.*"))
+                  '("„Éí„É©„ÇÆ„Éé‰∏∏„Ç¥ pro w4*" . "jisx0208.*"))
 (set-fontset-font "fontset-default"
                   'katakana-jisx0201
-                  '("•“•È•Æ•Œ¥›•¥ pro w4*" . "jisx0201.*"))
+                  '("„Éí„É©„ÇÆ„Éé‰∏∏„Ç¥ pro w4*" . "jisx0201.*"))
 
 ;;;;
 ;;;; Emacs start up program
@@ -458,7 +458,7 @@
 ;;; Navi2ch
 ;;;
 (require 'navi2ch nil t)
-(setq navi2ch-net-http-proxy "wproxy.is.akita-u.ac.jp:8080")
+(setq navi2ch-net-http-proxy "wproxy.akita-u.ac.jp:8080")
 (setq navi2ch-article-auto-expunge t)
 (setq navi2ch-list-bbstable-url "http://menu.2ch.net/bbstable.html")
 
@@ -581,17 +581,17 @@
 	 ;;(custom-set-variables '(its-hira-enable-double-n nil))
 	 (setq its-hira-enable-double-n nil)
 	 (setq its-hira-enable-zenkaku-alphabet nil)
-	 (setq its-hira-comma "°§")
+	 (setq its-hira-comma "Ôºå")
 	 (define-its-state-machine-append its-hira-map
-	   (its-defrule "Z,"  "°¢" nil t)
-	   (its-defrule "wi"  "§¶§£" nil t)
-	   (its-defrule "we"  "§¶§ß" nil t)
-	   (its-defrule "thi" "§∆§£" nil t)
-	   (its-defrule "twu" "§»§•" nil t)
-	   (its-defrule "thu" "§∆§Â" nil t)
-	   (its-defrule "dhi" "§«§£" nil t)
-	   (its-defrule "dwu" "§…§•" nil t)
-	   (its-defrule "dhu" "§«§Â" nil t)))
+	   (its-defrule "Z,"  "„ÄÅ" nil t)
+	   (its-defrule "wi"  "„ÅÜ„ÅÉ" nil t)
+	   (its-defrule "we"  "„ÅÜ„Åá" nil t)
+	   (its-defrule "thi" "„Å¶„ÅÉ" nil t)
+	   (its-defrule "twu" "„Å®„ÅÖ" nil t)
+	   (its-defrule "thu" "„Å¶„ÇÖ" nil t)
+	   (its-defrule "dhi" "„Åß„ÅÉ" nil t)
+	   (its-defrule "dwu" "„Å©„ÅÖ" nil t)
+	   (its-defrule "dhu" "„Åß„ÇÖ" nil t)))
 	((featurep 'egg)
 	 (let ((its:*defrule-verbose* nil))
 	   (egg)				; EGG3
