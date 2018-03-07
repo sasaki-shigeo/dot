@@ -1,4 +1,5 @@
 #
+# -*- mode: sh; -*-
 # This is a ZSH startup file that prepares interaction settings
 #
 
