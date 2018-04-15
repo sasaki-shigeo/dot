@@ -15,18 +15,16 @@ setopt histignoredups #histignorespace histverify
 setopt notify
 setopt printexitvalue
 
-#stty -istrip erase 
-bindkey -me	# enable meta-key
-bindkey '\M-b'  vi-backward-word
-bindkey '\M-e'  vi-forward-word-end
-bindkey '\M-f'  vi-forward-word
-bindkey '\M-^?' vi-backward-kill-word
-bindkey '\eb'   vi-backward-word
-bindkey '\ee'   vi-forward-word-end
-bindkey '\ef'   vi-forward-word
-bindkey '\e^?'  vi-backward-kill-word
-bindkey '^w'    vi-backward-kill-word
-
+# bindkey -me	# enable meta-key
+# bindkey '\M-b'  vi-backward-word
+# bindkey '\M-e'  vi-forward-word-end
+# bindkey '\M-f'  vi-forward-word
+# bindkey '\M-^?' vi-backward-kill-word
+# bindkey '\eb'   vi-backward-word
+# bindkey '\ee'   vi-forward-word-end
+# bindkey '\ef'   vi-forward-word
+# bindkey '\e^?'  vi-backward-kill-word
+# bindkey '^w'    vi-backward-kill-word
 
 autoload -U compinit
 # compinit
@@ -36,17 +34,10 @@ limitargs=(cputime filesize datasize stacksize coredumpsize
 makeargs=(all clean install default)
 printers=(oki part news02 dewa)
 hosts=( localhost 127.0.0.1
-	akita-u.ac.jp 
-	quartet.ipc.akita-u.ac.jp octet.ipc.akita-u.ac.jp
-	lambda.is.akita-u.ac.jp 
+	akita-u.ac.jp
+	lambda.is.akita-u.ac.jp
 	junsai.is.akita-u.ac.jp
-	is.tsukuba.ac.jp score.is.tsukuba.ac.jp
-	ftp.netlab.is.tsukuba.ac.jp ntp.netlab.is.tsukuba.ac.jp
-	ftp.akita-u.ac.jp ftp.is.akita-u.ac.jp 
-	ftp.jp.freebsd.org
-	netbsd.tohoku.ac.jp
-	ftp.u-aizu.ac.jp ftp.tut.ac.jp ftp.kuis.kyoto-u.ac.jp
-	ftp.nacsis.ac.jp ftp.riken.go.jp )
+	ftp.jp.freebsd.org ftp.u-aizu.ac.jp ftp.riken.go.jp )
 
 urls=
 
@@ -85,8 +76,7 @@ alias unl=unlimit
 alias up=uptime
 alias his=history las='last -20'
 alias clear="echo -n '\033(B\033[H\033[J'" 
-alias jman='LANG=ja_JP.eucJP /usr/local/bin/jman'
-alias xemacs='LC_MESSAGE=ja_JP xemacs'
+# alias jman='LANG=ja_JP.eucJP /usr/local/bin/jman'
 
 alias h=scan s=show n=next p=prev # d=rmm
 alias inc="mv $HOME/Mail/mlog $HOME/Mail/mlog.bak; touch $HOME/Mail/mlog"
@@ -109,26 +99,25 @@ xtitle () { echo -n '];'$*'' }
 setenv () { export $1=$2 }
 
 burn-acd0 () { burncd -f /dev/acd0 -s max data $1 fixate }
-w3m () {
-    W3M=/usr/local/bin/w3m
-    case "$TERM" in
-	kterm*) $W3M -j $@ ;;
-	*) $W3M $@ ;;
-    esac
-}
-open() {
-    if [ -d "$1" ]; then
-	cd $1
-    else
-	case "$1" in
-	    *.dvi) xdvi "$1" ;;
-	    *.class) java `basename -s .class "$1"` ;;
-	    *) /usr/local/bin/jless "$1"
-	esac
-    fi
-}
+# w3m () {
+#    W3M=/usr/local/bin/w3m
+#    case "$TERM" in
+#        kterm*) $W3M -j $@ ;;
+#        *) $W3M $@ ;;
+#    esac
+#}
 
-
+# open() {
+#    if [ -d "$1" ]; then
+#        cd $1
+#    else
+#        case "$1" in
+#             *.dvi) xdvi "$1" ;;
+#            *.class) java `basename -s .class "$1"` ;;
+#            *) /usr/local/bin/jless "$1"
+#        esac
+#    fi
+#}
 
 if [ x$UID = x0 ]; then
     alias exportfs='kill -HUP `cat /var/run/mountd.pid`'
