@@ -5,7 +5,6 @@
 # Setting Terminal
 eval `tset -s`
 stty -istrip
-bindkey -em
 
 echo 'Which is the erase key on your keyboard?'
 echo -n 'Type here: '
