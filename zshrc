@@ -7,7 +7,7 @@ HISTSIZE=1000
 fignore=('.o' '.ql' '~')
 PROMPT='%n[%t]%# '
 RPROMPT='%m:%~'
-mailpath=(~/Mail/inbox)
+#mailpath=(~/Mail/inbox)
 
 setopt autocd automenu autolist correct nobeep nonomatch
 setopt listtypes pushdsilent
@@ -99,25 +99,32 @@ xtitle () { echo -n '];'$*'' }
 setenv () { export $1=$2 }
 
 burn-acd0 () { burncd -f /dev/acd0 -s max data $1 fixate }
-# w3m () {
-#    W3M=/usr/local/bin/w3m
-#    case "$TERM" in
-#        kterm*) $W3M -j $@ ;;
-#        *) $W3M $@ ;;
-#    esac
-#}
 
-# open() {
-#    if [ -d "$1" ]; then
-#        cd $1
-#    else
-#        case "$1" in
-#             *.dvi) xdvi "$1" ;;
-#            *.class) java `basename -s .class "$1"` ;;
-#            *) /usr/local/bin/jless "$1"
-#        esac
-#    fi
-#}
+if W3M=`which w3m`; then
+    w3m () {
+        case "$TERM" in
+            kterm*) $W3M -j $@ ;;
+            *) $W3M $@ ;;
+        esac
+    }
+fi
+
+start() {
+    if [ -d "$1" ]; then
+        cd $1
+    else
+        case "$1" in
+             *.dvi) xdvi "$1" ;;
+            *.class) java `basename -s .class "$1"` ;;
+            *) /usr/local/bin/jless "$1"
+        esac
+    fi
+}
+
+case x$OSTYPE in
+    xdarwin*) ;;
+    *) alias open=start ;;
+esac
 
 if [ x$UID = x0 ]; then
     alias exportfs='kill -HUP `cat /var/run/mountd.pid`'
