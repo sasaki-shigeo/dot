@@ -1,29 +1,7 @@
-;; (create-fontset-from-fontset-spec 
-;;  (concat 
-;;   "-*-fixed-medium-r-normal-*-24-*-*-*-*-*-fontset-osaka14," 
-;;   "japanese-jisx0208:-apple-osaka\201|\223\231\225\235-medium-r-normal--14-140-75-75-m-140-jisx0208.1983-sjis," 
-;;   "katakana-jisx0201:-apple-osaka\201|\223\231\225\235-medium-r-normal--14-140-75-75-m-140-jisx0208.1983-sjis," 
-;;   "ascii:-apple-monaco-medium-r-normal-*-14-*-*-*-*-*-mac-roman")) 
-
-;; (cond ((eq window-system 'mac)
-;;        (create-fontset-from-fontset-spec
-;; 	(concat 
-;; 	 "-*-fixed-medium-r-normal-*-14-*-*-*-*-*-fontset-hiracou14" 
-;; 	 ",japanese-jisx0208:-apple-ヒラギノ丸ゴ pro w4-medium-r-normal--14-140-75-75-m-140-jisx0208.1983-sjis" 
-;; 	 ",katakana-jisx0201:-apple-ヒラギノ丸ゴ pro w4-medium-r-normal--14-140-75-75-m-140-jisx0201.1976-0"
-;; 	 ",korean-ksc5601:-apple-applegothic-medium-r-normal--14-140-75-75-m-140-ksc5601.1989-0" 
-;; 	 ",ascii:-apple-courier-*-*-normal--14-*-75-75-m-*-mac-roman"
-;; 	 ",latin-iso8859-1:-apple-courier-*-*-normal--14-*-75-75-m-*-mac-roman"
-;; 	 ))))
-
 ;; (set-default-font "fontset-osaka14") 
 ;; (setq default-frame-alist (append '((font . "fontset-osaka14")))) 
 ;; (set-default-font "fontset-hiracou14")
 ;; (setq default-frame-alist (append '((font . "fontset-hiracou14"))))
-
-;; (setq navi2ch-net-http-proxy "wproxy.is.akita-u.ac.jp:8080")
-;; (setq navi2ch-article-auto-expange t)
-;; (setq navi2ch-list-bbstable-url "http://menu.2ch.net/bbstable.html")
 
 (set-face-attribute 'default nil :family "courier" :height 140)
 (set-fontset-font "fontset-default"
