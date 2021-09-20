@@ -4,10 +4,10 @@
 #
 
 HISTSIZE=1000
-fignore=('.o' '.ql' '~')
+fignore=('.o' '.class' '.aux' '.log' '.ql' '~')
 PROMPT='%n[%t]%# '
 RPROMPT='%m:%~'
-mailpath=(~/Mail/inbox)
+# mailpath=(~/Mail/inbox)
 
 setopt autocd automenu autolist correct nobeep nonomatch
 setopt listtypes pushdsilent
@@ -15,8 +15,7 @@ setopt histignoredups #histignorespace histverify
 setopt notify
 setopt printexitvalue
 
-#stty -istrip erase 
-bindkey -me	# enable meta-key
+# bindkey -me	# enable meta-key
 bindkey '\M-b'  vi-backward-word
 bindkey '\M-e'  vi-forward-word-end
 bindkey '\M-f'  vi-forward-word
