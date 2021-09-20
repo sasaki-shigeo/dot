@@ -4,7 +4,7 @@
 
 umask 002
 limit coredumpsize 0
-limit maxproc 100	# 40 is default
+#limit maxproc 100
 
 #fpath=(. ~ ~/bin/lib)
 
@@ -26,82 +26,15 @@ if [ "$UID" = 0 ]; then
     bindkey -e
 fi
 
-
 # site local
 export TEXINPUTS=.:$HOME/tex/inputs:
 #export XDVIFONTS=/usr/TeX/fonts/PK:/usr/TeX/fonts/PKams300
-export NNTPSERVER=news
 export MAILHOST=mailer.is.akita-u.ac.jp
-test x"$UID" = x0 || export MAIL=$HOME/Mail/inbox
+#test x"$UID" = x0 || export MAIL=$HOME/Mail/inbox
 export JSERVER=samba.is.akita-u.ac.jp HONYAKUSERVER=junsai
-export ORGANIZATION='Computer Science Laboratory, Akita University'
-export SHOGIDIR=/tmp
+#export ORGANIZATION='Computer Science Laboratory, Akita University'
 #export CDR_DEVICE=5,0 CDR_SPEED=6
 export ADOBE_LANG=JPN
-
-# particular to OS
-case $OSTYPE in
-    freebsd*)   # FreeBSD
-        osbin=()
-        sbin=(/usr/local/sbin /usr/sbin /sbin)
-	miscbin=(/usr/local/{jdk1.5.0,jdk1.4.1,jdk1.3.1,jdk1.2.2,jdk1.1.8}/bin)
-	export WRKDIRPREFIX=/var/tmp DISTDIR=/pub/distfiles
-        ;;
-    linux*)     # Linux
-        osbin=()
-        sbin=(/usr/sbin /sbin)
-        ;;
-    solaris*)   # Solaris
-        osbin=(/usr/ccs/bin /usr/ucb)
-        sbin=(/usr/sbin /sbin)
-        ;;
-    hpux*)	$ HP-UX
-	osbin=(/usr/bin/xpg4 /usr/bin /usr/ccs/bin /usr/contrib/bin)
-	x11bin=(/usr/bin/X11 /usr/contrib/bin/X11)
-	miscbin=(/usr/local/bin/* /opt/*/bin)
-esac
-
-# particular to Host
-case $HOST in
-    maple*)	# FreeBSD
-	export DISTDIR=/exp/distfiles
-	;;
-    inukko*)	# FreeBSD
-	hostbin=(/opt/bin)
-	miscbin=(/usr/games /usr/local/{jdk1.4.1,jdk1.3.1,jdk1.2.2,jdk1.1.8}/bin)
-	export WRKDIRPREFIX=/usr/tmp
-    ;;
-    junsai*)	# FreeBSD
-	hostbin=()
-	miscbin=(/usr/games /usr/local/jdk1.2.2/bin)
-    ;;
-esac
-
-# OS depend
-if [ -z "$sbin" ]; then
-    if [ -d /sbin ]; then
-	sbin=(/sbin /usr/sbin)		# new fashion UNIX
-    elif [ -d /usr/etc ]; then
-	sbin=(/usr/etc)			# SunOS 4, NeXT
-    else
-	sbin=(/etc)			# old fashion UNIX
-    fi
-fi
-
-if [ -z "$x11bin" ]; then
-    if [ -d /usr/bin/X11 ]; then
-	x11bin=/usr/bin/X11
-    elif [ -d /usr/local/bin/X11 ]; then
-	x11bin=/usr/local/bin/X11
-    elif [ -d /usr/X11R6/bin ]; then
-	x11bin=/usr/X11R6/bin
-    fi
-fi
-
-
-path=(~/bin ~/bin/$CPUTYPE ~/local/bin $hostbin /usr/local/bin $x11bin
-      /usr/ucb /usr/bin /bin
-      $sbin $miscbin)
 
 # Several machines forget to register the kterm entry
 # to TERMCAP and/or TERMINFO
