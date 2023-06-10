@@ -1,6 +1,6 @@
 #! /usr/local/bin/zsh -x
 
-#xset fp= tcp/lambda.is.akita-u.ac.jp:7100
+#xset fp= tcp/127.0.0.1:7100
 
 sh $HOME/.xconfig
 
