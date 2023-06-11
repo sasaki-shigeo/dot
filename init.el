@@ -16,6 +16,7 @@
 (define-key global-map	"\r"	'newline-and-indent)
 (define-key global-map	"\n"	'newline)
 (define-key global-map	"\M-`"	'goto-line)
+(define-key global-map  "\M- "  'set-mark)
 (define-key ctl-x-map	"%"	'blink-matching-open)
 (define-key ctl-x-map	"\C-v"	'view-file)
 (define-key ctl-x-map	"B"	'bury-buffer)
@@ -82,6 +83,15 @@
 (when (eq window-system 'ns)
   (setq default-directory "~/")
   (setq command-line-default-directory "~/"))
+
+;;;
+;;; Emacs 28 Official Binary for MacOS or Home Brew Distribuion has
+;;; a bug that cause an error at the start time.
+;;;
+;;; Emacs 28 for MacOS can handle
+(when (and (eq window-system 'ns)
+	   (string>= emacs-version "28"))
+  (add-to-list 'image-types 'svg))
 
 ;;;
 ;;; MacOS font settings
