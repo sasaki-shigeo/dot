@@ -6,7 +6,7 @@ export EXINIT='set autoindent autowrite showmatch shiftwidth=4
 	map ; :'
 export EDITOR=vi
 export BLOCKSIZE=1k
-if [ -x /usr/local/bin/lv -o /opt/homebrew/bin/lv ]; then     # Mac
+if [ -x /usr/local/bin/lv -o -x /opt/homebrew/bin/lv ]; then     # Mac
     export PAGER=lv LV=-Ou
 elif [ -x /usr/local/bin/jless ]; then          # FreeBSD
     export PAGER=/usr/local/bin/jless JLESSCHARSET=japanese LESS=-e 
